@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy as np  
+import numpy as np
 
 def koch_curve(order, size):
     if order == 0:
@@ -33,9 +33,9 @@ def koch_snowflake(order, size):
         rotated_points = [(x * np.cos(np.radians(angle)) - y * np.sin(np.radians(angle)), 
                            x * np.sin(np.radians(angle)) + y * np.cos(np.radians(angle))) 
                           for (x, y) in curve]
-        curve = rotated_points
-        for p in rotated_points:
-            points.append(p)
+        last_point = points[-1]
+        rotated_points = [(last_point[0] + p[0], last_point[1] + p[1]) for p in rotated_points]
+        points.extend(rotated_points)
         angle += 120
     return points
 
